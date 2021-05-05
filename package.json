@@ -1,0 +1,45 @@
+{
+    "name": "web-player-motion-tracking",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:theothergrantdavidson/web-player-motion-tracking.git",
+    "author": "Grant Davidson <grant.l.davidson@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "@babel/core": "^7.13.16",
+        "@babel/preset-react": "^7.13.13",
+        "@types/promise": "^7.1.30",
+        "@types/styled-components": "^5.1.9",
+        "babel": "^6.23.0",
+        "babel-core": "^6.26.3",
+        "opencv-ts": "^1.2.6",
+        "promise": "^8.1.0",
+        "react-hot-loader": "^4.13.0",
+        "styled-component": "^2.8.0",
+        "styled-components": "^5.2.3",
+        "ts-loader": "^9.1.1",
+        "typescript": "^4.2.4",
+        "webpack": "^5.36.1",
+        "webpack-cli": "^4.6.0",
+        "webpack-dev-server": "^3.11.2"
+    },
+    "scripts": {
+        "dev": "webpack --mode development",
+        "start:dev": "webpack serve"
+    },
+    "devDependencies": {
+        "@hot-loader/react-dom": "^17.0.1",
+        "babel-eslint": "^10.1.0",
+        "babel-loader": "^8.2.2",
+        "eslint": "^7.25.0",
+        "html-webpack-plugin": "^5.3.1",
+        "prettier": "^2.2.1",
+        "prettier-eslint": "^12.0.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-hooks": "^1.0.1",
+        "rxjs": "^6.6.7",
+        "typescript-eslint": "^0.0.1-alpha.0",
+        "worker-loader": "^3.0.8"
+    }
+}

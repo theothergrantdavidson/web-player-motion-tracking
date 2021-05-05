@@ -1,0 +1,30 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "importHelpers": true,
+        "module": "es2020",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "downlevelIteration": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "strictNullChecks": false,
+        "target": "es2015",
+        "jsx": "react",
+        "typeRoots": [
+            "node_modules/@types",
+        ],
+        "lib": ["ESNext", "dom"],
+        "baseUrl": ".",
+        "paths": {
+            "promise": ["node_modules/promise/index.js"],
+            "gitRepositoryInfo": [".gitignore"],
+        },
+        "rootDir": "."
+    },
+    "exclude": ["node_modules"]
+}
