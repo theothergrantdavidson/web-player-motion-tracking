@@ -8,7 +8,8 @@ import GlobalStore from '../GlobalStore';
 const Host = styled.div`
     display: flex;
     flex-flow: column;
-    position: relative;
+    height: fit-content;
+    align-items: center;
 `;
 
 const PlayerContainer = styled.div`
@@ -16,13 +17,14 @@ const PlayerContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     width: 800px;
-    height: 500px;
+    height: 550px;
+    background-color: black;
+    position: relative;
 `;
 
 const ViewerContainer = styled.div`
-    width: 100%;
-    height: 800px;
-    margin-bottom: 10px;
+    width: 800px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,14 +32,22 @@ const ViewerContainer = styled.div`
 `;
 
 const ControlsContainer = styled.div`
-    width: inherit;
-    height: 500px;
-    z-index: 10;
-    position: absolute;
+    width: 100%;
+    height: 50px;
     display: flex;
     flex-flow: column-reverse;
     align-items: center;
-    padding-bottom: 10px;
+    padding: 10px 0px;
+    background: black;
+`;
+
+const InputContainer = styled.div`
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    padding: 10px 5px;
 `;
 
 export const Player: React.FC = () => {
@@ -65,13 +75,15 @@ export const Player: React.FC = () => {
                 }}
             >
                 <ViewerContainer>
-                    <ControlsContainer>
-                        <Controls playing={setIsPlaying} showControls={showControls} />
-                    </ControlsContainer>
                     <Viewer videoSrc={selectedFile} />
                 </ViewerContainer>
+                <ControlsContainer>
+                    <Controls playing={setIsPlaying} showControls={showControls} />
+                </ControlsContainer>
             </PlayerContainer>
-            <FileInput onFileSelect={setSelectedFileCb} />
+            <InputContainer>
+                <FileInput onFileSelect={setSelectedFileCb} />
+            </InputContainer>
         </Host>
     );
 };

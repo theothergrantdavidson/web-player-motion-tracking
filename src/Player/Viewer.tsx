@@ -8,8 +8,8 @@ interface ViewerProps {
 }
 
 const ViewerContainer = styled.div`
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,10 +17,7 @@ const ViewerContainer = styled.div`
     background: black;
 `;
 
-const Video = styled.video`
-    height: ${({ height }) => height};
-    width: ${({ width }) => width};
-`;
+const Video = styled.video``;
 
 export const Viewer: React.FC<ViewerProps> = ({ videoSrc = '' }) => {
     const containerRef = useRef<HTMLDivElement | null>();
@@ -29,6 +26,8 @@ export const Viewer: React.FC<ViewerProps> = ({ videoSrc = '' }) => {
 
     const [vidWidth, setVidWidth] = useState(100);
     const [vidHeight, setVidHeight] = useState(100);
+
+    const [containerHeight, setContainerHeight] = useState(0);
 
     useEffect(() => {
         if (videoRef.current) {
@@ -52,13 +51,18 @@ export const Viewer: React.FC<ViewerProps> = ({ videoSrc = '' }) => {
                         video.height = containerRef.current.clientHeight;
                         video.width = video.clientWidth;
                     }
-                    console.info(video.width, video.height);
                     setVidHeight(video.height - 2);
-                    setVidWidth(video.width)
+                    setVidWidth(video.width);
                 }
             });
         }
-    }, [videoRef, containerRef, store]);
+    }, [videoRef, containerRef, store, containerHeight]);
+
+    useEffect(() => {
+        if (containerRef.current) {
+            setContainerHeight(containerRef.current.clientHeight);
+        }
+    }, [containerRef]);
 
     return (
         <ViewerContainer ref={containerRef}>

@@ -106,7 +106,6 @@ export const SectionSelector: React.FC<{
 
     const onMouseUp = useCallback(() => {
         if (mouseDown) {
-            console.info('Change');
             onBoxChange(enforceXValue(x1), enforceYValue(y1), enforceXValue(x2), enforceYValue(y2));
         }
         setMouseDown(false);

@@ -65,7 +65,6 @@ export const Controls: React.FC<{
 
     return (
         <PlayPauseContainer onClick={onContolsClick} blob={!!store.srcBlob}>
-            {console.info(!!store.srcBlob)}
             {!!isPlaying ? <IconPause /> : <IconPlay />}
         </PlayPauseContainer>
     );

@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-console.log(path.resolve(__dirname, '/node_modules/styled-components'));
 
 module.exports = {
     mode: 'development',
