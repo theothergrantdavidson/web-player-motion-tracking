@@ -6713,10 +6713,10 @@ onetime@^5.1.0, onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
-opencv-ts@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/opencv-ts/-/opencv-ts-1.2.6.tgz#4c41cc03a8e310f103e2c5634f008639c2406776"
-  integrity sha512-tl/5XolbIgWGUAAkUWeSFAIlEbZuD1ILQvG5q1eyAbvnZzQLRHnS/boUYHmQoF6c9aT1U1ccWQMIWhqXbeotRQ==
+opencv-ts@^1.2.14:
+  version "1.2.14"
+  resolved "https://registry.yarnpkg.com/opencv-ts/-/opencv-ts-1.2.14.tgz#645ca5c20911ed0eef8a1cf74c8d59e3728f8323"
+  integrity sha512-fLj9d7efUS11Yg5gsG2IWs5uzM/ekcM4qsd9jiiJTS6KRSHfNAirBNG/7v0dZKBRd1EiOtSH1mro2ckFujLRFw==
   dependencies:
     typescript "^4.2.3"
 

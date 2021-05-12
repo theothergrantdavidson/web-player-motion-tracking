@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Controls } from './Controls';
 import { Viewer } from './Viewer';
 import GlobalStore from '../GlobalStore';
+import { Rect } from 'opencv-ts';
 
 const Host = styled.div`
     display: flex;
@@ -50,7 +51,7 @@ const InputContainer = styled.div`
     padding: 10px 5px;
 `;
 
-export const Player: React.FC = () => {
+export const Player: React.FC<{ onSelection(r: Rect): void }> = ({ onSelection }) => {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [showControls, setShowControls] = useState<boolean>();
     const [selectedFile, setSelectedFile] = useState<string | undefined>();
@@ -75,7 +76,7 @@ export const Player: React.FC = () => {
                 }}
             >
                 <ViewerContainer>
-                    <Viewer videoSrc={selectedFile} />
+                    <Viewer videoSrc={selectedFile} onSelection={onSelection} />
                 </ViewerContainer>
                 <ControlsContainer>
                     <Controls playing={setIsPlaying} showControls={showControls} />

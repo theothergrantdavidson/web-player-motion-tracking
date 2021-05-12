@@ -12,6 +12,10 @@ export default class GlobalStore {
         undefined
     );
 
+    private _cvLoaded: BehaviorSubject<boolean> = new BehaviorSubject(undefined);
+
+    private _isPlaying: BehaviorSubject<boolean> = new BehaviorSubject(undefined);
+
     private _srcBlob: BehaviorSubject<string | undefined> = new BehaviorSubject(undefined);
 
     public static getInstance(): GlobalStore {
@@ -19,6 +23,38 @@ export default class GlobalStore {
             GlobalStore.instance = new GlobalStore();
         }
         return GlobalStore.instance;
+    }
+
+    set isPlaying(playing: boolean) {
+        if (!!this._isPlaying) {
+            this._isPlaying = new BehaviorSubject(playing);
+        } else {
+            this._isPlaying.next(playing);
+        }
+    }
+
+    get isPlaying() {
+        return this._isPlaying.value;
+    }
+
+    get $isPlaying() {
+        return this._isPlaying;
+    }
+
+    set cvLoaded(loaded: boolean) {
+        if (!!this._cvLoaded) {
+            this._cvLoaded = new BehaviorSubject(loaded);
+        } else {
+            this._cvLoaded.next(loaded);
+        }
+    }
+
+    get cvLoaded() {
+        return this._cvLoaded.value;
+    }
+
+    get $cvLoaded() {
+        return this._cvLoaded;
     }
 
     private setCanvasCtx(ctx: CanvasRenderingContext2D) {

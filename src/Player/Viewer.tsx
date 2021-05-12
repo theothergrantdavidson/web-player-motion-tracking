@@ -2,9 +2,11 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { SectionSelector } from '../SectionSelector/SectionSelector';
 import styled from 'styled-components';
 import GlobalStore from '../GlobalStore';
+import cv, { Rect, Point } from 'opencv-ts';
 
 interface ViewerProps {
     videoSrc?: string;
+    onSelection(r: Rect): void;
 }
 
 const ViewerContainer = styled.div`
@@ -19,7 +21,7 @@ const ViewerContainer = styled.div`
 
 const Video = styled.video``;
 
-export const Viewer: React.FC<ViewerProps> = ({ videoSrc = '' }) => {
+export const Viewer: React.FC<ViewerProps> = ({ videoSrc = '', onSelection }) => {
     const containerRef = useRef<HTMLDivElement | null>();
     const videoRef = useRef<HTMLVideoElement | null>();
     const store = GlobalStore.getInstance();
@@ -70,7 +72,12 @@ export const Viewer: React.FC<ViewerProps> = ({ videoSrc = '' }) => {
                 width={vidWidth}
                 height={vidHeight}
                 onBoxChange={(x1: number, y1: number, x2: number, y2: number) => {
-                    console.info(x1, y1, x2, y2);
+                    const _x1 = x1 < x2 ? x1 : x2;
+                    const _x2 = x1 > x2 ? x1 : x2;
+                    const _y1 = y1 < y2 ? y1 : y2;
+                    const _y2 = y1 > y2 ? y1 : y2;
+                    
+                    onSelection(new cv.Rect(_x1, _y1, Math.abs(_x1 - _x2), Math.abs(_y1 - _y2)));
                 }}
             />
             <Video src={videoSrc} ref={videoRef} />

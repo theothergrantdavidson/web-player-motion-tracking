@@ -52,7 +52,7 @@ module.exports = {
         alias: {
             'react-dom': '@hot-loader/react-dom',
             'styled-components': path.resolve(__dirname, '/node_modules/styled-components'),
-            'opencv-ts': '/Users/grantdavidson/opencv-ts',
+            'opencv-ts': path.resolve(__dirname, '/node_modules/opencv-ts'),
         },
     },
     output: {

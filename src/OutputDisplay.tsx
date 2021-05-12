@@ -4,8 +4,8 @@ import cv, { Mat } from 'opencv-ts';
 import GlobalStore from './GlobalStore';
 
 const Host = styled.div`
-    width: 400px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,9 +27,10 @@ const DisplayCanvas = styled.canvas`
 
 interface OutputDisplay {
     processFn(mat: Mat): Mat;
+    processDeps?: Array<any>;
 }
 
-export const OutputDisplay: React.FC<OutputDisplay> = ({ processFn }) => {
+export const OutputDisplay: React.FC<OutputDisplay> = ({ processFn, processDeps }) => {
     const [src, setSrc] = useState<HTMLVideoElement | undefined>();
     const [isPlaying, setIsPlaying] = useState(false);
     const [loaded, setLoaded] = useState(false);
@@ -54,7 +55,8 @@ export const OutputDisplay: React.FC<OutputDisplay> = ({ processFn }) => {
                 if (isPlaying === true) {
                     try {
                         cap.read(frame);
-                        renderQueue.push(frame);
+                        renderQueue.push(processFn(frame));
+
                         const queueFrame = renderQueue.shift();
 
                         if (queueFrame) {
@@ -72,12 +74,13 @@ export const OutputDisplay: React.FC<OutputDisplay> = ({ processFn }) => {
                 clearInterval(intervalId);
             };
         }
-    }, [dataLoaded, isPlaying, loaded]);
+    }, [dataLoaded, isPlaying, loaded].concat(processDeps));
 
     useEffect(() => {
         if (src) {
             src.addEventListener('play', () => {
                 setIsPlaying(true);
+                store.isPlaying = true;
             });
 
             src.addEventListener('pause', () => {
@@ -103,10 +106,7 @@ export const OutputDisplay: React.FC<OutputDisplay> = ({ processFn }) => {
 
     useEffect(() => {
         store.$videoSrc.subscribe(src => setSrc(src));
-
-        cv.onRuntimeInitialized = () => {
-            setLoaded(true);
-        };
+        store.$cvLoaded.subscribe(src => setLoaded(src));
     });
 
     return (

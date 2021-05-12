@@ -30,7 +30,7 @@ export const SectionSelector: React.FC<{
         const rect = containerRef.current.getClientRects()[0];
         if (n < 0) return 0;
         if (n > rect.width) return rect.width;
-        return n;
+        return Math.floor(n);
     };
 
     const enforceYValue = (n: number): number => {
