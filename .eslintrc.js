@@ -14,16 +14,8 @@ module.exports = {
     },
     rules: {
         ...base.rules,
-
-        // These rules are errors in .eslintrc.base.js, which is used by the
-        // pre-commit hook. This file is the one used by CI so we're going to
-        // only warn for the time being. We will remove this once we fix all our
-        // code, or add ignore comments where we have exceptions to the rule, so
-        // that we error in CI as we do in pre-commit.
         'react-hooks/rules-of-hooks': 'warn',
         'react-hooks/exhaustive-deps': 'warn',
-
-        // use the type checking no-throw-literal in the full check
         'no-throw-literal': 'off',
         '@typescript-eslint/no-throw-literal': 'error',
         '@typescript-eslint/no-floating-promises': ['warn', { ignoreVoid: false }],
